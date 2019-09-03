@@ -1,4 +1,4 @@
-FROM openshift3/jenkins-agent-maven-35-rhel7
+FROM quay.io/openshift/origin-jenkins-agent-base
 
 
 
