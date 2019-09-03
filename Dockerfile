@@ -6,8 +6,6 @@ ENV JMETER_VERSION=5.1
 ENV JMETER_HOME=/opt/jmeter
 ENV JMETER_DIR=${JMETER_HOME}/apache-jmeter-${JMETER_VERSION}
 
-RUN yum -y update && yum -y install wget
-
 WORKDIR ${JMETER_HOME}
 
 RUN wget -qO- http://ftp.ps.pl/pub/apache//jmeter/binaries/apache-jmeter-${JMETER_VERSION}.tgz | tar xvz && \
