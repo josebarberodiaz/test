@@ -12,7 +12,9 @@ RUN wget -qO- http://ftp.ps.pl/pub/apache//jmeter/binaries/apache-jmeter-${JMETE
     wget -P ${JMETER_DIR}/lib/ext https://repo1.maven.org/maven2/kg/apc/jmeter-plugins-manager/0.10/jmeter-plugins-manager-0.10.jar && \
     wget -P ${JMETER_DIR}/lib https://repo1.maven.org/maven2/kg/apc/cmdrunner/2.0/cmdrunner-2.0.jar 
     
-#RUN ${JMETER_DIR}/bin/PluginsManagerCMD.sh install jpgc-casutg,jpgc-graphs-basic,jpgc-graphs-composite,jpgc-graphs-vs,jpgc-graphs-additional,jpgc-ggl,jpgc-cmd,jpgc-synthesis,jpgc-graphs-dist
+#Kafka plugin
+COPY jmeter.backendlistener.kafka-1.0.0.jar ${JMETER_HOME}/lib/ext
+COPY jmeter-plugins-manager-1.3.jar ${JMETER_HOME}/lib/ext
 
 RUN ln -s ${JMETER_DIR}/bin/jmeter /usr/bin/jmeter
 
