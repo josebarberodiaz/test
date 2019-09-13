@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.1 r1853635">
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.1.1 r1855137">
   <hashTree>
     <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan" enabled="true">
       <stringProp name="TestPlan.comments"></stringProp>
@@ -8,14 +8,74 @@
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
         <collectionProp name="Arguments.arguments"/>
       </elementProp>
-      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+      <stringProp name="TestPlan.user_define_classpath">..\lib\santander</stringProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
     </TestPlan>
     <hashTree>
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="MYSQL" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="DATABASE_URL" elementType="Argument">
+            <stringProp name="Argument.name">DATABASE_URL</stringProp>
+            <stringProp name="Argument.value">${__P(v_database_url,&quot;jdbc:mysql://localhost:3306/grafana&quot;)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">${__P(v_database_url,&quot;jdbc:mysql://mysql/grafana?serverTimezone=UTC&quot;)}</stringProp>
+          </elementProp>
+          <elementProp name="DATABASE_USR" elementType="Argument">
+            <stringProp name="Argument.name">DATABASE_USR</stringProp>
+            <stringProp name="Argument.value">${__P(v_database_usr,&quot;test&quot;)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">test</stringProp>
+          </elementProp>
+          <elementProp name="DATABASE_PWD" elementType="Argument">
+            <stringProp name="Argument.name">DATABASE_PWD</stringProp>
+            <stringProp name="Argument.value">${__P(v_database_pwd,&quot;test&quot;)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">test</stringProp>
+          </elementProp>
+          <elementProp name="DATABASE_APP" elementType="Argument">
+            <stringProp name="Argument.name">DATABASE_APP</stringProp>
+            <stringProp name="Argument.value">${__P(v_database_app,&quot;example.com&quot;)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">Example.com</stringProp>
+          </elementProp>
+          <elementProp name="DATABASE_TST" elementType="Argument">
+            <stringProp name="Argument.name">DATABASE_TST</stringProp>
+            <stringProp name="Argument.value">${__P(v_database_tst,&quot;Santander Digital&quot;)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">Santander Digital</stringProp>
+          </elementProp>
+          <elementProp name="ENVIRONMENT" elementType="Argument">
+            <stringProp name="Argument.name">ENVIRONMENT</stringProp>
+            <stringProp name="Argument.value">${__P(v_environment,&quot;PRE&quot;)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">PRE</stringProp>
+          </elementProp>
+          <elementProp name="NUM_THREADS" elementType="Argument">
+            <stringProp name="Argument.name">NUM_THREADS</stringProp>
+            <stringProp name="Argument.value">${__P(v_num_threads,5)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">1</stringProp>
+          </elementProp>
+          <elementProp name="RAMPUP_SECONDS" elementType="Argument">
+            <stringProp name="Argument.name">RAMPUP_SECONDS</stringProp>
+            <stringProp name="Argument.value">${__P(v_rampup_seconds,10)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">1</stringProp>
+          </elementProp>
+          <elementProp name="DURATION_SECONDS" elementType="Argument">
+            <stringProp name="Argument.name">DURATION_SECONDS</stringProp>
+            <stringProp name="Argument.value">${__P(v_duration_seconds,1800)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">60</stringProp>
+          </elementProp>
+        </collectionProp>
+      </Arguments>
+      <hashTree/>
       <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Variables_Desarrollo" enabled="true">
         <collectionProp name="Arguments.arguments">
           <elementProp name="RUTA_BASE" elementType="Argument">
             <stringProp name="Argument.name">RUTA_BASE</stringProp>
-            <stringProp name="Argument.value">D:\carlos\Proyectos\Santander-Framework\jmeter\</stringProp>
+            <stringProp name="Argument.value">D:\proyectos\bantech\test\</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="#RUTA_BASE" elementType="Argument">
@@ -53,9 +113,9 @@
             <stringProp name="Argument.value">120</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
-          <elementProp name="#NUM_USUARIOS" elementType="Argument">
-            <stringProp name="Argument.name">#NUM_USUARIOS</stringProp>
-            <stringProp name="Argument.value">10</stringProp>
+          <elementProp name="NUM_USUARIOS" elementType="Argument">
+            <stringProp name="Argument.name">NUM_USUARIOS</stringProp>
+            <stringProp name="Argument.value">1</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
@@ -95,21 +155,479 @@
         <boolProp name="CookieManager.clearEachIteration">false</boolProp>
       </CookieManager>
       <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Inicializar_BBDD" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">10</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="false">
+          <boolProp name="displayJMeterProperties">false</boolProp>
+          <boolProp name="displayJMeterVariables">true</boolProp>
+          <boolProp name="displaySystemProperties">false</boolProp>
+        </DebugSampler>
+        <hashTree/>
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="Abrir_Conexion" enabled="false">
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="script">import java.sql.*;
+import java.util.Calendar;
+import java.text.SimpleDateFormat;
+import com.mysql.jdbc.Driver;
+
+    try
+    {
+    	Class.forName(&quot;com.mysql.jdbc.Driver&quot;);
+    	 SimpleDateFormat sdf = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;);
+      // create a mysql database connection
+      String myDriver = &quot;com.mysql.jdbc.Driver&quot;;
+      String myUrl = &quot;jdbc:mysql://localhost/qatesting?serverTimezone=UTC+1&quot;;
+      Class.forName(myDriver);
+		String database_user = vars.get(&quot;DATABASE_USR&quot;);
+		String database_pwd = vars.get(&quot;DATABASE_PWD&quot;);
+
+     Connection conn = DriverManager.getConnection(myUrl, database_user, database_pwd);
+	log.info(&quot;Openin Database Connection&quot;);
+
+	Statement stmt = conn.createStatement();
+	ResultSet rs = stmt.executeQuery(&quot;Select id from application where name=&apos;&quot;+vars.get(&quot;DATABASE_APP&quot;)+&quot;&apos;&quot;);
+	String idApp = &quot;&quot;;
+	String idBuild = &quot;&quot;;
+	String idExecution = &quot;&quot;;
+	String idEnv = &quot;&quot;;
+	
+	if(rs.next()) {
+		idApp = rs.getString(1);
+		log.info(&quot;The application &apos;&quot;+appName+&quot;&apos; existed already in db. ID: &quot;+idApp);
+	}else {
+		rs.close();
+		Statement stmt = conn.createStatement();
+		stmt.executeUpdate(&quot;INSERT INTO application (name,tst_domain) VALUES (&apos;&quot;+vars.get(&quot;DATABASE_APP&quot;)+&quot;&apos;,&apos;&quot;+vars.get(&quot;DATABASE_TST&quot;)+&quot;&apos;)&quot;, new String[]{&quot;id&quot;});
+		rs = stmt.getGeneratedKeys();
+		if(rs.next()) {
+			idApp = rs.getString(1);
+			log.info(&quot;The application &apos;&quot;+vars.get(&quot;DATABASE_APP&quot;)+&quot;&apos; has been inserted in db. ID: &quot;+idApp);
+		}
+	}
+	rs.close();
+
+	stmt = conn.createStatement();
+	stmt.executeUpdate(&quot;INSERT INTO build (id_application,build_number,technology) VALUES (&quot;+idApp+&quot;,&quot;+0+&quot;,&apos;JMeter&apos;)&quot;, new String[]{&quot;id&quot;});
+	rs = stmt.getGeneratedKeys();
+	if (rs.next()) {
+		idBuild = rs.getString(1);
+		log.info(&quot;The build with build_number &apos;&quot;+0+&quot;&apos; has been inserted in db. ID: &quot;+idBuild);
+	}
+
+	Statement stmt = conn.createStatement();
+	ResultSet rs = stmt.executeQuery(&quot;Select id from environment where name=&apos;&quot;+vars.get(&quot;ENVIRONMENT&quot;)+&quot;&apos;&quot;);
+	if(rs.next()) {
+		idEnv = rs.getString(1);
+		log.info(&quot;The environment &apos;&quot;+vars.get(&quot;ENVIRONMENT&quot;)+&quot;&apos; existed already in db. ID: &quot;+idEnv);
+	}else {
+		rs.close();
+		Statement stmt = conn.createStatement();
+		stmt.executeUpdate(&quot;INSERT INTO environment (name) VALUES (&apos;&quot;+vars.get(&quot;ENVIRONMENT&quot;)+&quot;&apos;)&quot;, new String[]{&quot;id&quot;});
+		rs = stmt.getGeneratedKeys();
+		if(rs.next()) {
+			idEnv = rs.getString(1);
+			log.info(&quot;The environment &apos;&quot;+vars.get(&quot;ENVIRONMENT&quot;)+&quot;&apos; has been inserted in db. ID: &quot;+idEnv);
+		}
+	}
+	rs.close();
+
+	String idExec = &quot;&quot;;
+	
+	Statement stmt = conn.createStatement();
+	ResultSet rs = stmt.executeQuery(&quot;Select id from execution order by id DESC&quot;);
+	if(rs.next()) {
+		idExec = rs.getString(1);
+	}
+	
+	//create table jmeter_metrics (
+	//  sample_time timestamp,
+	//  label varchar(90) not null,success
+	//  success varchar(32) not null,
+	//  response_code varchar(32) not null,
+	//  response_time_ms int,
+	//  primary key (sample_time,label)
+	//);
+	        
+	
+	long time = System.currentTimeMillis();
+	java.sql.Timestamp ts = new java.sql.Timestamp(time);
+	log.info(&quot;Time in milliseconds :&quot; + ts);
+		 
+     String query = &quot; insert into test (start_date, name, status, response_code, duration, id_suite, thread_group)&quot;
+        + &quot; values (?, ?, ?, ?, ?, ?, ?)&quot;;
+      // create the mysql insert preparedstatement
+      PreparedStatement preparedStmt = conn.prepareStatement(query);
+	
+	props.put(&quot;databaseConn&quot;, conn);
+	      // the mysql insert statement
+	props.put(&quot;insertStatement&quot;, preparedStmt);
+	props.put(&quot;idBuild&quot;, idBuild);
+	props.put(&quot;iteration&quot;,0);
+	props.put(&quot;idEnv&quot;,idEnv);
+	props.put(&quot;lastExecId&quot;,idExec);
+	      
+	//      preparedStmt.setTimestamp   (1, ts);
+	//      preparedStmt.setString (2, &quot;label1&quot;);
+	//      preparedStmt.setString (3, &quot;true&quot;);
+	//      preparedStmt.setString (4, &quot;200&quot;);
+	//      preparedStmt.setInt    (5, 5000);
+	
+	      // execute the preparedstatement
+	//      preparedStmt.execute();
+      
+      //conn.close();
+    }
+    catch (Exception e)
+    {
+      log.error(&quot;Got an exception!&quot;);
+      log.info( &quot;print&quot; + e );
+    }
+
+</stringProp>
+          <stringProp name="scriptLanguage">java</stringProp>
+        </JSR223Sampler>
+        <hashTree/>
+        <JSR223Listener guiclass="TestBeanGUI" testclass="JSR223Listener" testname="JSR223 Listener" enabled="false">
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="script">import java.sql.*;
+
+    try
+    {
+
+    
+	System.out.println(&quot;Inserting in database...&quot;);
+
+
+//long time = Long.parseLong(vars.get(&quot;sample_timestamp&quot;));//System.currentTimeMillis();
+//java.sql.Timestamp ts = new java.sql.Timestamp(time);
+//System.out.println(&quot;Time in milliseconds :&quot; + ts);
+
+//Connection conn = (Connection) props.get(&quot;databaseConn&quot;);
+PreparedStatement preparedStmt = (PreparedStatement) props.get(&quot;insertStatement&quot;);
+
+String isSuccessfull = &quot;OK&quot;;
+if (!sampleResult.isSuccessful()) {
+	vars.put(&quot;isSuccessfull&quot;,&quot;Error&quot;);
+}
+
+      // create the mysql insert preparedstatement
+      preparedStmt.setTimestamp   (1, new java.sql.Timestamp(sampleResult.getTimeStamp()));
+      preparedStmt.setString (2, sampleResult.getSampleLabel());
+      preparedStmt.setString (3, isSuccessfull);
+      preparedStmt.setString (4, sampleResult.getResponseCode());
+      preparedStmt.setInt    (5, (int)sampleResult.getTime());
+
+      // execute the preparedstatement
+      preparedStmt.execute();
+      
+      //conn.close();
+    }
+    catch (Exception e)
+    {
+      System.err.println(&quot;Got an exception!&quot;);
+      System.err.println(e.getMessage());
+    }
+
+</stringProp>
+          <stringProp name="scriptLanguage">groovy</stringProp>
+        </JSR223Listener>
+        <hashTree/>
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="prueba" enabled="true">
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="script">import java.sql.*;
+import java.util.Calendar;
+import java.text.SimpleDateFormat;
+import com.mysql.jdbc.Driver;
+
+    try
+    {
+    	Class.forName(&quot;com.mysql.jdbc.Driver&quot;);
+    	 SimpleDateFormat sdf = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;);
+      // create a mysql database connection
+      String myDriver = &quot;com.mysql.jdbc.Driver&quot;;
+      String myUrl = &quot;jdbc:mysql://mysql/grafana?serverTimezone=UTC+1&quot;;
+      Class.forName(myDriver);
+		String database_user = vars.get(&quot;DATABASE_USR&quot;);
+		String database_pwd = vars.get(&quot;DATABASE_PWD&quot;);
+
+     Connection conn = DriverManager.getConnection(myUrl, database_user, database_pwd);
+	log.info(&quot;Openin Database Connection&quot;);
+
+	Statement stmt = conn.createStatement();
+	ResultSet rs = stmt.executeQuery(&quot;Select id from application where name=&apos;&quot;+vars.get(&quot;DATABASE_APP&quot;)+&quot;&apos;&quot;);
+	String idApp = &quot;&quot;;
+	String idBuild = &quot;&quot;;
+	String idExecution = &quot;&quot;;
+	String idEnv = &quot;&quot;;
+	
+	if(rs.next()) {
+		idApp = rs.getString(1);
+		log.info(&quot;The application &apos;&quot;+appName+&quot;&apos; existed already in db. ID: &quot;+idApp);
+	}else {
+		rs.close();
+		Statement stmt = conn.createStatement();
+		stmt.executeUpdate(&quot;INSERT INTO application (name,tst_domain) VALUES (&apos;&quot;+vars.get(&quot;DATABASE_APP&quot;)+&quot;&apos;,&apos;&quot;+vars.get(&quot;DATABASE_TST&quot;)+&quot;&apos;)&quot;, new String[]{&quot;id&quot;});
+		rs = stmt.getGeneratedKeys();
+		if(rs.next()) {
+			idApp = rs.getString(1);
+			log.info(&quot;The application &apos;&quot;+vars.get(&quot;DATABASE_APP&quot;)+&quot;&apos; has been inserted in db. ID: &quot;+idApp);
+		}
+	}
+	rs.close();
+
+	stmt = conn.createStatement();
+	stmt.executeUpdate(&quot;INSERT INTO build (id_application,build_number,technology) VALUES (&quot;+idApp+&quot;,&quot;+0+&quot;,&apos;JMeter&apos;)&quot;, new String[]{&quot;id&quot;});
+	rs = stmt.getGeneratedKeys();
+	if (rs.next()) {
+		idBuild = rs.getString(1);
+		log.info(&quot;The build with build_number &apos;&quot;+0+&quot;&apos; has been inserted in db. ID: &quot;+idBuild);
+	}
+
+	Statement stmt = conn.createStatement();
+	ResultSet rs = stmt.executeQuery(&quot;Select id from environment where name=&apos;&quot;+vars.get(&quot;ENVIRONMENT&quot;)+&quot;&apos;&quot;);
+	if(rs.next()) {
+		idEnv = rs.getString(1);
+		log.info(&quot;The environment &apos;&quot;+vars.get(&quot;ENVIRONMENT&quot;)+&quot;&apos; existed already in db. ID: &quot;+idEnv);
+	}else {
+		rs.close();
+		Statement stmt = conn.createStatement();
+		stmt.executeUpdate(&quot;INSERT INTO environment (name) VALUES (&apos;&quot;+vars.get(&quot;ENVIRONMENT&quot;)+&quot;&apos;)&quot;, new String[]{&quot;id&quot;});
+		rs = stmt.getGeneratedKeys();
+		if(rs.next()) {
+			idEnv = rs.getString(1);
+			log.info(&quot;The environment &apos;&quot;+vars.get(&quot;ENVIRONMENT&quot;)+&quot;&apos; has been inserted in db. ID: &quot;+idEnv);
+		}
+	}
+	rs.close();
+
+	String idExec = &quot;&quot;;
+	
+	Statement stmt = conn.createStatement();
+	ResultSet rs = stmt.executeQuery(&quot;Select id from execution order by id DESC&quot;);
+	if(rs.next()) {
+		idExec = rs.getString(1);
+	}
+	
+	//create table jmeter_metrics (
+	//  sample_time timestamp,
+	//  label varchar(90) not null,success
+	//  success varchar(32) not null,
+	//  response_code varchar(32) not null,
+	//  response_time_ms int,
+	//  primary key (sample_time,label)
+	//);
+	        
+	
+	long time = System.currentTimeMillis();
+	java.sql.Timestamp ts = new java.sql.Timestamp(time);
+	log.info(&quot;Time in milliseconds :&quot; + ts);
+		 
+     String query = &quot; insert into test (start_date, name, status, response_code, duration, id_suite, thread_group)&quot;
+        + &quot; values (?, ?, ?, ?, ?, ?, ?)&quot;;
+      // create the mysql insert preparedstatement
+      PreparedStatement preparedStmt = conn.prepareStatement(query);
+	
+	props.put(&quot;databaseConn&quot;, conn);
+	      // the mysql insert statement
+	props.put(&quot;insertStatement&quot;, preparedStmt);
+	props.put(&quot;idBuild&quot;, idBuild);
+	props.put(&quot;iteration&quot;,0);
+	props.put(&quot;idEnv&quot;,idEnv);
+	props.put(&quot;lastExecId&quot;,idExec);
+	      
+	//      preparedStmt.setTimestamp   (1, ts);
+	//      preparedStmt.setString (2, &quot;label1&quot;);
+	//      preparedStmt.setString (3, &quot;true&quot;);
+	//      preparedStmt.setString (4, &quot;200&quot;);
+	//      preparedStmt.setInt    (5, 5000);
+	
+	      // execute the preparedstatement
+	//      preparedStmt.execute();
+      
+      //conn.close();
+    }
+    catch (Exception e)
+    {
+      log.error(&quot;Got an exception!&quot;);
+      log.info( &quot;print&quot; + e );
+    }
+
+</stringProp>
+          <stringProp name="scriptLanguage">java</stringProp>
+        </JSR223Sampler>
+        <hashTree/>
+      </hashTree>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <intProp name="LoopController.loops">-1</intProp>
+          <stringProp name="LoopController.loops">1</stringProp>
         </elementProp>
-        <stringProp name="ThreadGroup.num_threads">${__P(num_usuarios)}</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">${__P(rampup_period)}</stringProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
         <longProp name="ThreadGroup.start_time">1370726934000</longProp>
         <longProp name="ThreadGroup.end_time">1370726934000</longProp>
-        <boolProp name="ThreadGroup.scheduler">true</boolProp>
-        <stringProp name="ThreadGroup.duration">${__P(duration)}</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
         <stringProp name="ThreadGroup.delay"></stringProp>
       </ThreadGroup>
       <hashTree>
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="Insertar_ejecucion" enabled="true">
+          <stringProp name="scriptLanguage">java</stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="script">import java.sql.*;
+import org.apache.jmeter.samplers.SampleResult;
+import java.text.SimpleDateFormat;
+
+try
+{
+	//Parece que al insertar tan rápido, no se da cuenta de que hay un registro ya insertado.
+	try {Thread.sleep(500);} catch (InterruptedException e) {}
+
+	SimpleDateFormat sdf = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;);
+	String idExec = &quot;&quot;;
+
+	log.info(&quot;INSERTANDO EXECUTION&quot;);
+
+	Connection conn = (Connection) props.get(&quot;databaseConn&quot;);
+	
+	Statement stmt = conn.createStatement();
+	stmt.executeUpdate(&quot;INSERT INTO execution (start_date,execution_type,id_build,id_environment) VALUES(&apos;&quot;+sdf.format(new java.util.Date())+&quot;&apos;,&apos;Performance&apos;,&quot;+props.get(&quot;idBuild&quot;)+&quot;,&apos;&quot;+props.get(&quot;idEnv&quot;)+&quot;&apos;)&quot;, Statement.RETURN_GENERATED_KEYS);
+	rs = stmt.getGeneratedKeys();
+	if (rs.next()) {
+		idExec = rs.getString(1);
+		log.info(&quot;The Execution has been inserted in db. ID: &quot;+idExec);
+	}
+
+
+	log.error(&quot;INSERTANDO EXECUTION ---------------&quot;+idExec);
+	
+	props.put(&quot;idExec&quot;,idExec);
+
+
+    }
+catch (Exception e)
+{
+ log.error(&quot;Got an exception!&quot;);
+ log.info( &quot;print&quot; + e );
+ log.error(e.getMessage());
+}</stringProp>
+        </JSR223Sampler>
+        <hashTree/>
+        <JSR223Listener guiclass="TestBeanGUI" testclass="JSR223Listener" testname="JSR223 Listener" enabled="true">
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="script">import java.sql.*;
+import org.apache.jmeter.samplers.SampleResult;
+import java.text.SimpleDateFormat;
+
+if(!sampleResult.getSampleLabel().equals(&quot;Insertar_ejecucion&quot;)){
+    try
+    {
+    	SimpleDateFormat sdf = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;);
+    	
+	log.info(&quot;Inserting in database...&quot;);
+     String myDriver = &quot;com.mysql.jdbc.Driver&quot;;
+	 String myUrl = &quot;jdbc:mysql://mysql/grafana?serverTimezone=UTC+1&quot;;
+     Class.forName(myDriver);
+	String database_user = vars.get(&quot;DATABASE_USR&quot;);
+	String database_pwd = vars.get(&quot;DATABASE_PWD&quot;);
+
+     Connection conn = DriverManager.getConnection(myUrl, database_user, database_pwd);
+
+	//long time = Long.parseLong(vars.get(&quot;sample_timestamp&quot;));//System.currentTimeMillis();
+	//java.sql.Timestamp ts = new java.sql.Timestamp(time);
+	//System.out.println(&quot;Time in milliseconds :&quot; + ts);
+	String idSuite = &quot;&quot;;
+	String idExec = props.get(&quot;idExec&quot;);
+
+	Statement stmt = conn.createStatement();
+	ResultSet rs = stmt.executeQuery(&quot;Select id from suite where name=&apos;&quot;+sampleResult.getSampleLabel()+&quot;&apos; and id_execution =&quot;+idExec);
+	if(rs.next()) {
+		idSuite = rs.getString(1);
+	}else{
+		stmt = conn.createStatement();
+		try {Thread.sleep(500);} catch (InterruptedException e) {}
+		stmt.executeUpdate(&quot;insert into suite (id_execution,software_delivery, name, start_date) values (&apos;&quot;+idExec+
+		&quot;&apos;,&apos;null&apos;,&apos;&quot;+sampleResult.getSampleLabel()+&quot;&apos;,&apos;&quot;+new java.sql.Timestamp(sampleResult.getTimeStamp())+&quot;&apos;)&quot;, new String[]{&quot;id&quot;});
+		rs = stmt.getGeneratedKeys();
+		if(rs.next()) {
+			idSuite = rs.getString(1);
+		}
+	}
+	
+	for(SampleResult sr : sampleResult.getSubResults()){
+		//Connection conn = (Connection) props.get(&quot;databaseConn&quot;);
+		PreparedStatement preparedStmt = (PreparedStatement) props.get(&quot;insertStatement&quot;);
+	
+		String isSuccessfull = &quot;OK&quot;;
+		if (!sr.isSuccessful()) {
+			System.out.println(&quot;ERRORRRRR&quot;);
+			isSuccessfull = &quot;Error&quot;;
+		}
+	
+	      // create the mysql insert preparedstatement
+		String sampleLabel = sr.getSampleLabel();
+		if (sampleLabel.length() &gt; 89) {
+			sampleLabel = sr.getSampleLabel().substring(0,89);
+		}
+	
+		String responseCode = sr.getResponseCode();
+		if (responseCode.length() &gt; 29) {
+			responseCode = sr.getResponseCode().substring(0,29);
+		}
+	
+	      
+	      preparedStmt.setTimestamp   (1, new java.sql.Timestamp(sr.getTimeStamp()));
+	      preparedStmt.setString (2, sampleLabel);
+	      preparedStmt.setString (3, isSuccessfull);
+	      preparedStmt.setString (4, responseCode);
+	      preparedStmt.setInt    (5, (int)sr.getTime());
+	      preparedStmt.setInt    (6, Integer.valueOf(idSuite));
+	      preparedStmt.setString    (7, ctx.getThread().getThreadName());
+	      
+	      // execute the preparedstatement
+	      preparedStmt.execute();
+	      
+	      //conn.close();
+	}
+
+	String success = sampleResult.isSuccessful()?&quot;OK&quot;:&quot;Error&quot;;
+	Statement stmt = conn.createStatement();
+	stmt.executeUpdate(&quot;UPDATE suite set duration=&quot;+sampleResult.getTime()+&quot;, status=&apos;&quot;+success+&quot;&apos; where id =&quot;+idSuite);
+	
+	
+    }
+    catch (Exception e)
+    {
+      log.error(&quot;Got an exception!&quot;);
+      log.error(e.getMessage());
+    }
+}
+</stringProp>
+          <stringProp name="scriptLanguage">java</stringProp>
+        </JSR223Listener>
+        <hashTree/>
         <RecordingController guiclass="RecordController" testclass="RecordingController" testname="Recording Controller" enabled="true"/>
         <hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Transaccion1__" enabled="true">
@@ -149,7 +667,7 @@
             </HeaderManager>
             <hashTree/>
             <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
-              <stringProp name="ConstantTimer.delay">1000</stringProp>
+              <stringProp name="ConstantTimer.delay">500</stringProp>
             </ConstantTimer>
             <hashTree/>
           </hashTree>
