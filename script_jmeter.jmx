@@ -423,7 +423,7 @@ if(!sampleResult.getSampleLabel().equals(&quot;Insertar_ejecucion&quot;)){
     	
 	log.info(&quot;Inserting in database...&quot;);
      String myDriver = &quot;com.mysql.jdbc.Driver&quot;;
-	 String myUrl = &quot;jdbc:mysql://172.30.115.40/grafana?serverTimezone=UTC+1&quot;;
+	String myUrl = &quot;jdbc:mysql://172.30.115.40/grafana?serverTimezone=UTC+1&amp;useSSL=false&quot;;
      Class.forName(myDriver);
 	String database_user = vars.get(&quot;DATABASE_USR&quot;);
 	String database_pwd = vars.get(&quot;DATABASE_PWD&quot;);
