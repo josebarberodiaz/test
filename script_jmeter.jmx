@@ -189,13 +189,14 @@ import com.mysql.jdbc.Driver;
     	 SimpleDateFormat sdf = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;);
       // create a mysql database connection
       String myDriver = &quot;com.mysql.jdbc.Driver&quot;;
-      String myUrl = &quot;jdbc:mysql://mysql/grafana?serverTimezone=UTC+1&quot;;
+      String myUrl = &quot;jdbc:mysql://mysql/grafana?serverTimezone=UTC+1&amp;useSSL=false&quot;;
       Class.forName(myDriver);
-		String database_user = vars.get(&quot;DATABASE_USR&quot;);
-		String database_pwd = vars.get(&quot;DATABASE_PWD&quot;);
+		String database_user = &quot;test&quot;;
+		String database_pwd = &quot;test&quot;;
 
      Connection conn = DriverManager.getConnection(myUrl, database_user, database_pwd);
 	log.info(&quot;Openin Database Connection&quot;);
+        System.out.println(&quot;================================================================================================&quot;);
 
 	Statement stmt = conn.createStatement();
 	ResultSet rs = stmt.executeQuery(&quot;Select id from application where name=&apos;&quot;+vars.get(&quot;DATABASE_APP&quot;)+&quot;&apos;&quot;);
