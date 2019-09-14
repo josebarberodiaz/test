@@ -16,7 +16,7 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="DATABASE_URL" elementType="Argument">
             <stringProp name="Argument.name">DATABASE_URL</stringProp>
-            <stringProp name="Argument.value">${__P(v_database_url,&quot;jdbc:mysql://mysql:3306/grafana&quot;)}</stringProp>
+            <stringProp name="Argument.value">${__P(v_database_url,&quot;jdbc:mysql://172.30.115.40:3306/grafana&quot;)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">${__P(v_database_url,&quot;jdbc:mysql://mysql/grafana?serverTimezone=UTC&quot;)}</stringProp>
           </elementProp>
@@ -175,7 +175,7 @@ import com.mysql.jdbc.Driver;
     	 SimpleDateFormat sdf = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;);
       // create a mysql database connection
       String myDriver = &quot;com.mysql.jdbc.Driver&quot;;
-      String myUrl = &quot;jdbc:mysql://mysql/grafana?serverTimezone=UTC+1&amp;useSSL=false&quot;;
+      String myUrl = &quot;jdbc:mysql://172.30.115.40/grafana?serverTimezone=UTC+1&amp;useSSL=false&quot;;
       Class.forName(myDriver);
 String database_user = vars.get(&quot;DATABASE_USR&quot;);
 	String database_pwd = vars.get(&quot;DATABASE_PWD&quot;);
@@ -423,7 +423,7 @@ if(!sampleResult.getSampleLabel().equals(&quot;Insertar_ejecucion&quot;)){
     	
 	log.info(&quot;Inserting in database...&quot;);
      String myDriver = &quot;com.mysql.jdbc.Driver&quot;;
-	 String myUrl = &quot;jdbc:mysql://mysql/grafana?serverTimezone=UTC+1&quot;;
+	 String myUrl = &quot;jdbc:mysql://172.30.115.40/grafana?serverTimezone=UTC+1&quot;;
      Class.forName(myDriver);
 	String database_user = vars.get(&quot;DATABASE_USR&quot;);
 	String database_pwd = vars.get(&quot;DATABASE_PWD&quot;);
