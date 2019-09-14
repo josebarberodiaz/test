@@ -22,13 +22,13 @@
           </elementProp>
           <elementProp name="DATABASE_USR" elementType="Argument">
             <stringProp name="Argument.name">DATABASE_USR</stringProp>
-            <stringProp name="Argument.value">${__P(v_database_usr,&quot;test&quot;)}</stringProp>
+            <stringProp name="Argument.value">${__P(v_database_usr,test)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">test</stringProp>
           </elementProp>
           <elementProp name="DATABASE_PWD" elementType="Argument">
             <stringProp name="Argument.name">DATABASE_PWD</stringProp>
-            <stringProp name="Argument.value">${__P(v_database_pwd,&quot;test&quot;)}</stringProp>
+            <stringProp name="Argument.value">${__P(v_database_pwd,test)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">test</stringProp>
           </elementProp>
