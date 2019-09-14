@@ -16,7 +16,7 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="DATABASE_URL" elementType="Argument">
             <stringProp name="Argument.name">DATABASE_URL</stringProp>
-            <stringProp name="Argument.value">${__P(v_database_url,&quot;jdbc:mysql://172.30.115.40:3306/grafana?allowPublicKeyRetrieval=true&quot;)}</stringProp>
+            <stringProp name="Argument.value">${__P(v_database_url,jdbc:mysql://172.30.115.40:3306/grafana?allowPublicKeyRetrieval=true)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">${__P(v_database_url,&quot;jdbc:mysql://mysql/grafana?serverTimezone=UTC&quot;)}</stringProp>
           </elementProp>
@@ -34,19 +34,19 @@
           </elementProp>
           <elementProp name="DATABASE_APP" elementType="Argument">
             <stringProp name="Argument.name">DATABASE_APP</stringProp>
-            <stringProp name="Argument.value">${__P(v_database_app,&quot;example.com&quot;)}</stringProp>
+            <stringProp name="Argument.value">${__P(v_database_app,example.com)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">Example.com</stringProp>
           </elementProp>
           <elementProp name="DATABASE_TST" elementType="Argument">
             <stringProp name="Argument.name">DATABASE_TST</stringProp>
-            <stringProp name="Argument.value">${__P(v_database_tst,&quot;Santander Digital&quot;)}</stringProp>
+            <stringProp name="Argument.value">${__P(v_database_tst,Santander Digital)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">Santander Digital</stringProp>
           </elementProp>
           <elementProp name="ENVIRONMENT" elementType="Argument">
             <stringProp name="Argument.name">ENVIRONMENT</stringProp>
-            <stringProp name="Argument.value">${__P(v_environment,&quot;PRE&quot;)}</stringProp>
+            <stringProp name="Argument.value">${__P(v_environment,PRE)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">PRE</stringProp>
           </elementProp>
@@ -353,9 +353,9 @@ if (!sampleResult.isSuccessful()) {
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">1</stringProp>
+          <stringProp name="LoopController.loops">200</stringProp>
         </elementProp>
-        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.num_threads">5</stringProp>
         <stringProp name="ThreadGroup.ramp_time">1</stringProp>
         <longProp name="ThreadGroup.start_time">1370726934000</longProp>
         <longProp name="ThreadGroup.end_time">1370726934000</longProp>
