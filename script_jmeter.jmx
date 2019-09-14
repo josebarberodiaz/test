@@ -175,7 +175,7 @@ import com.mysql.jdbc.Driver;
     	 SimpleDateFormat sdf = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;);
       // create a mysql database connection
       String myDriver = &quot;com.mysql.jdbc.Driver&quot;;
-      String myUrl = &quot;jdbc:mysql://172.30.115.40/grafana?serverTimezone=UTC+1&amp;useSSL=false&amp;allowPublicKeyRetrieval=true&quot;;
+      String myUrl = &quot;jdbc:mysql://mysql/grafana?useSSL=false&amp;allowPublicKeyRetrieval=true&quot;;
       Class.forName(myDriver);
 String database_user = vars.get(&quot;DATABASE_USR&quot;);
 	String database_pwd = vars.get(&quot;DATABASE_PWD&quot;);
@@ -423,7 +423,7 @@ if(!sampleResult.getSampleLabel().equals(&quot;Insertar_ejecucion&quot;)){
     	
 	log.info(&quot;Inserting in database...&quot;);
      String myDriver = &quot;com.mysql.jdbc.Driver&quot;;
-	String myUrl = &quot;jdbc:mysql://172.30.115.40/grafana?serverTimezone=UTC+1&amp;useSSL=false&amp;allowPublicKeyRetrieval=true&quot;;
+      String myUrl = &quot;jdbc:mysql://mysql/grafana?useSSL=false&amp;allowPublicKeyRetrieval=true&quot;;
      Class.forName(myDriver);
 	String database_user = vars.get(&quot;DATABASE_USR&quot;);
 	String database_pwd = vars.get(&quot;DATABASE_PWD&quot;);
