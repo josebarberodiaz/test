@@ -136,20 +136,6 @@
         </collectionProp>
       </Arguments>
       <hashTree/>
-      <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults" enabled="true">
-        <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-          <collectionProp name="Arguments.arguments"/>
-        </elementProp>
-        <stringProp name="HTTPSampler.domain">www.example.com</stringProp>
-        <stringProp name="HTTPSampler.port"></stringProp>
-        <stringProp name="HTTPSampler.protocol">http</stringProp>
-        <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-        <stringProp name="HTTPSampler.path"></stringProp>
-        <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
-        <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-        <stringProp name="HTTPSampler.response_timeout"></stringProp>
-      </ConfigTestElement>
-      <hashTree/>
       <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager" enabled="true">
         <collectionProp name="CookieManager.cookies"/>
         <boolProp name="CookieManager.clearEachIteration">false</boolProp>
@@ -191,8 +177,8 @@ import com.mysql.jdbc.Driver;
       String myDriver = &quot;com.mysql.jdbc.Driver&quot;;
       String myUrl = &quot;jdbc:mysql://mysql/grafana?serverTimezone=UTC+1&amp;useSSL=false&quot;;
       Class.forName(myDriver);
-		String database_user = &quot;test&quot;;
-		String database_pwd = &quot;test&quot;;
+String database_user = vars.get(&quot;DATABASE_USR&quot;);
+	String database_pwd = vars.get(&quot;DATABASE_PWD&quot;);
 
      Connection conn = DriverManager.getConnection(myUrl, database_user, database_pwd);
 	log.info(&quot;Openin Database Connection&quot;);
@@ -348,131 +334,19 @@ if (!sampleResult.isSuccessful()) {
           <stringProp name="scriptLanguage">groovy</stringProp>
         </JSR223Listener>
         <hashTree/>
-        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="prueba" enabled="false">
-          <stringProp name="cacheKey">true</stringProp>
-          <stringProp name="filename"></stringProp>
-          <stringProp name="parameters"></stringProp>
-          <stringProp name="script">import java.sql.*;
-import java.util.Calendar;
-import java.text.SimpleDateFormat;
-import com.mysql.jdbc.Driver;
-
-    try
-    {
-    	Class.forName(&quot;com.mysql.jdbc.Driver&quot;);
-    	 SimpleDateFormat sdf = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;);
-      // create a mysql database connection
-      String myDriver = &quot;com.mysql.jdbc.Driver&quot;;
-      String myUrl = &quot;jdbc:mysql://mysql/grafana?serverTimezone=UTC+1&quot;;
-      Class.forName(myDriver);
-		String database_user = vars.get(&quot;DATABASE_USR&quot;);
-		String database_pwd = vars.get(&quot;DATABASE_PWD&quot;);
-
-     Connection conn = DriverManager.getConnection(myUrl, database_user, database_pwd);
-	log.info(&quot;Openin Database Connection&quot;);
-
-	Statement stmt = conn.createStatement();
-	ResultSet rs = stmt.executeQuery(&quot;Select id from application where name=&apos;&quot;+vars.get(&quot;DATABASE_APP&quot;)+&quot;&apos;&quot;);
-	String idApp = &quot;&quot;;
-	String idBuild = &quot;&quot;;
-	String idExecution = &quot;&quot;;
-	String idEnv = &quot;&quot;;
-	
-	if(rs.next()) {
-		idApp = rs.getString(1);
-		log.info(&quot;The application &apos;&quot;+appName+&quot;&apos; existed already in db. ID: &quot;+idApp);
-	}else {
-		rs.close();
-		Statement stmt = conn.createStatement();
-		stmt.executeUpdate(&quot;INSERT INTO application (name,tst_domain) VALUES (&apos;&quot;+vars.get(&quot;DATABASE_APP&quot;)+&quot;&apos;,&apos;&quot;+vars.get(&quot;DATABASE_TST&quot;)+&quot;&apos;)&quot;, new String[]{&quot;id&quot;});
-		rs = stmt.getGeneratedKeys();
-		if(rs.next()) {
-			idApp = rs.getString(1);
-			log.info(&quot;The application &apos;&quot;+vars.get(&quot;DATABASE_APP&quot;)+&quot;&apos; has been inserted in db. ID: &quot;+idApp);
-		}
-	}
-	rs.close();
-
-	stmt = conn.createStatement();
-	stmt.executeUpdate(&quot;INSERT INTO build (id_application,build_number,technology) VALUES (&quot;+idApp+&quot;,&quot;+0+&quot;,&apos;JMeter&apos;)&quot;, new String[]{&quot;id&quot;});
-	rs = stmt.getGeneratedKeys();
-	if (rs.next()) {
-		idBuild = rs.getString(1);
-		log.info(&quot;The build with build_number &apos;&quot;+0+&quot;&apos; has been inserted in db. ID: &quot;+idBuild);
-	}
-
-	Statement stmt = conn.createStatement();
-	ResultSet rs = stmt.executeQuery(&quot;Select id from environment where name=&apos;&quot;+vars.get(&quot;ENVIRONMENT&quot;)+&quot;&apos;&quot;);
-	if(rs.next()) {
-		idEnv = rs.getString(1);
-		log.info(&quot;The environment &apos;&quot;+vars.get(&quot;ENVIRONMENT&quot;)+&quot;&apos; existed already in db. ID: &quot;+idEnv);
-	}else {
-		rs.close();
-		Statement stmt = conn.createStatement();
-		stmt.executeUpdate(&quot;INSERT INTO environment (name) VALUES (&apos;&quot;+vars.get(&quot;ENVIRONMENT&quot;)+&quot;&apos;)&quot;, new String[]{&quot;id&quot;});
-		rs = stmt.getGeneratedKeys();
-		if(rs.next()) {
-			idEnv = rs.getString(1);
-			log.info(&quot;The environment &apos;&quot;+vars.get(&quot;ENVIRONMENT&quot;)+&quot;&apos; has been inserted in db. ID: &quot;+idEnv);
-		}
-	}
-	rs.close();
-
-	String idExec = &quot;&quot;;
-	
-	Statement stmt = conn.createStatement();
-	ResultSet rs = stmt.executeQuery(&quot;Select id from execution order by id DESC&quot;);
-	if(rs.next()) {
-		idExec = rs.getString(1);
-	}
-	
-	//create table jmeter_metrics (
-	//  sample_time timestamp,
-	//  label varchar(90) not null,success
-	//  success varchar(32) not null,
-	//  response_code varchar(32) not null,
-	//  response_time_ms int,
-	//  primary key (sample_time,label)
-	//);
-	        
-	
-	long time = System.currentTimeMillis();
-	java.sql.Timestamp ts = new java.sql.Timestamp(time);
-	log.info(&quot;Time in milliseconds :&quot; + ts);
-		 
-     String query = &quot; insert into test (start_date, name, status, response_code, duration, id_suite, thread_group)&quot;
-        + &quot; values (?, ?, ?, ?, ?, ?, ?)&quot;;
-      // create the mysql insert preparedstatement
-      PreparedStatement preparedStmt = conn.prepareStatement(query);
-	
-	props.put(&quot;databaseConn&quot;, conn);
-	      // the mysql insert statement
-	props.put(&quot;insertStatement&quot;, preparedStmt);
-	props.put(&quot;idBuild&quot;, idBuild);
-	props.put(&quot;iteration&quot;,0);
-	props.put(&quot;idEnv&quot;,idEnv);
-	props.put(&quot;lastExecId&quot;,idExec);
-	      
-	//      preparedStmt.setTimestamp   (1, ts);
-	//      preparedStmt.setString (2, &quot;label1&quot;);
-	//      preparedStmt.setString (3, &quot;true&quot;);
-	//      preparedStmt.setString (4, &quot;200&quot;);
-	//      preparedStmt.setInt    (5, 5000);
-	
-	      // execute the preparedstatement
-	//      preparedStmt.execute();
-      
-      //conn.close();
-    }
-    catch (Exception e)
-    {
-      log.error(&quot;Got an exception!&quot;);
-      log.info( &quot;print&quot; + e );
-    }
-
-</stringProp>
-          <stringProp name="scriptLanguage">java</stringProp>
-        </JSR223Sampler>
+        <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">www.example.com</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path"></stringProp>
+          <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </ConfigTestElement>
         <hashTree/>
       </hashTree>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group" enabled="true">
