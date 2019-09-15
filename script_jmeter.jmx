@@ -16,7 +16,7 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="DATABASE_URL" elementType="Argument">
             <stringProp name="Argument.name">DATABASE_URL</stringProp>
-            <stringProp name="Argument.value">${__P(v_database_url,jdbc:mysql://mysql/grafana?useSSL=false&amp;allowPublicKeyRetrieval=true)}</stringProp>
+            <stringProp name="Argument.value">${__P(v_database_url,jdbc:mysql://mysql/grafana?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=UTC)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="DATABASE_USR" elementType="Argument">
@@ -66,7 +66,7 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="RUTA_BASE" elementType="Argument">
             <stringProp name="Argument.name">RUTA_BASE</stringProp>
-            <stringProp name="Argument.value">./test</stringProp>
+            <stringProp name="Argument.value">/tmp/test</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="IP" elementType="Argument">
@@ -647,7 +647,7 @@ if(!sampleResult.getSampleLabel().equals(&quot;Insertar_ejecucion&quot;)){
         <stringProp name="filename">${RUTA_BASE}resultados/${__time(yyyyMMdd-HHmmss)}_estabilidad.err</stringProp>
       </ResultCollector>
       <hashTree/>
-      <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregate Report" enabled="true">
+      <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregate Report" enabled="false">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>
@@ -680,7 +680,7 @@ if(!sampleResult.getSampleLabel().equals(&quot;Insertar_ejecucion&quot;)){
         <stringProp name="filename"></stringProp>
       </ResultCollector>
       <hashTree/>
-      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="false">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>
