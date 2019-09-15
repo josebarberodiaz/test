@@ -51,12 +51,12 @@
           </elementProp>
           <elementProp name="RAMPUP_SECONDS" elementType="Argument">
             <stringProp name="Argument.name">RAMPUP_SECONDS</stringProp>
-            <stringProp name="Argument.value">${__P(v_rampup_seconds,10)}</stringProp>
+            <stringProp name="Argument.value">${__P(v_rampup_seconds,1)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="DURATION_SECONDS" elementType="Argument">
             <stringProp name="Argument.name">DURATION_SECONDS</stringProp>
-            <stringProp name="Argument.value">${__P(v_duration_seconds,900)}</stringProp>
+            <stringProp name="Argument.value">${__P(v_duration_seconds,30)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
@@ -110,10 +110,10 @@
         <stringProp name="ThreadGroup.delay"></stringProp>
       </ThreadGroup>
       <hashTree>
-        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="false">
-          <boolProp name="displayJMeterProperties">false</boolProp>
+        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="true">
+          <boolProp name="displayJMeterProperties">true</boolProp>
           <boolProp name="displayJMeterVariables">true</boolProp>
-          <boolProp name="displaySystemProperties">false</boolProp>
+          <boolProp name="displaySystemProperties">true</boolProp>
         </DebugSampler>
         <hashTree/>
         <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="Abrir_Conexion" enabled="true">
