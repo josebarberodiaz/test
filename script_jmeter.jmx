@@ -4,7 +4,7 @@
     <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan" enabled="true">
       <stringProp name="TestPlan.comments"></stringProp>
       <boolProp name="TestPlan.functional_mode">false</boolProp>
-      <boolProp name="TestPlan.serialize_threadgroups">true</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
         <collectionProp name="Arguments.arguments"/>
       </elementProp>
@@ -18,55 +18,46 @@
             <stringProp name="Argument.name">DATABASE_URL</stringProp>
             <stringProp name="Argument.value">${__P(v_database_url,jdbc:mysql://172.30.115.40:3306/grafana?allowPublicKeyRetrieval=true)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
-            <stringProp name="Argument.desc">${__P(v_database_url,&quot;jdbc:mysql://mysql/grafana?serverTimezone=UTC&quot;)}</stringProp>
           </elementProp>
           <elementProp name="DATABASE_USR" elementType="Argument">
             <stringProp name="Argument.name">DATABASE_USR</stringProp>
             <stringProp name="Argument.value">${__P(v_database_usr,test)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
-            <stringProp name="Argument.desc">test</stringProp>
           </elementProp>
           <elementProp name="DATABASE_PWD" elementType="Argument">
             <stringProp name="Argument.name">DATABASE_PWD</stringProp>
             <stringProp name="Argument.value">${__P(v_database_pwd,test)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
-            <stringProp name="Argument.desc">test</stringProp>
           </elementProp>
           <elementProp name="DATABASE_APP" elementType="Argument">
             <stringProp name="Argument.name">DATABASE_APP</stringProp>
             <stringProp name="Argument.value">${__P(v_database_app,example.com)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
-            <stringProp name="Argument.desc">Example.com</stringProp>
           </elementProp>
           <elementProp name="DATABASE_TST" elementType="Argument">
             <stringProp name="Argument.name">DATABASE_TST</stringProp>
             <stringProp name="Argument.value">${__P(v_database_tst,Santander Digital)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
-            <stringProp name="Argument.desc">Santander Digital</stringProp>
           </elementProp>
           <elementProp name="ENVIRONMENT" elementType="Argument">
             <stringProp name="Argument.name">ENVIRONMENT</stringProp>
             <stringProp name="Argument.value">${__P(v_environment,PRE)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
-            <stringProp name="Argument.desc">PRE</stringProp>
           </elementProp>
           <elementProp name="NUM_THREADS" elementType="Argument">
             <stringProp name="Argument.name">NUM_THREADS</stringProp>
             <stringProp name="Argument.value">${__P(v_num_threads,5)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
-            <stringProp name="Argument.desc">1</stringProp>
           </elementProp>
           <elementProp name="RAMPUP_SECONDS" elementType="Argument">
             <stringProp name="Argument.name">RAMPUP_SECONDS</stringProp>
             <stringProp name="Argument.value">${__P(v_rampup_seconds,10)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
-            <stringProp name="Argument.desc">1</stringProp>
           </elementProp>
           <elementProp name="DURATION_SECONDS" elementType="Argument">
             <stringProp name="Argument.name">DURATION_SECONDS</stringProp>
             <stringProp name="Argument.value">${__P(v_duration_seconds,1800)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
-            <stringProp name="Argument.desc">60</stringProp>
           </elementProp>
         </collectionProp>
       </Arguments>
@@ -334,20 +325,6 @@ if (!sampleResult.isSuccessful()) {
           <stringProp name="scriptLanguage">groovy</stringProp>
         </JSR223Listener>
         <hashTree/>
-        <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-            <collectionProp name="Arguments.arguments"/>
-          </elementProp>
-          <stringProp name="HTTPSampler.domain">www.example.com</stringProp>
-          <stringProp name="HTTPSampler.port"></stringProp>
-          <stringProp name="HTTPSampler.protocol">http</stringProp>
-          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path"></stringProp>
-          <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
-          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-          <stringProp name="HTTPSampler.response_timeout"></stringProp>
-        </ConfigTestElement>
-        <hashTree/>
       </hashTree>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
@@ -424,7 +401,6 @@ if(!sampleResult.getSampleLabel().equals(&quot;Insertar_ejecucion&quot;)){
 	log.info(&quot;Inserting in database...&quot;);
      String myDriver = &quot;com.mysql.jdbc.Driver&quot;;
       String myUrl = &quot;jdbc:mysql://mysql/grafana?useSSL=false&amp;allowPublicKeyRetrieval=true&quot;;
-     Class.forName(myDriver);
 	String database_user = vars.get(&quot;DATABASE_USR&quot;);
 	String database_pwd = vars.get(&quot;DATABASE_PWD&quot;);
 
@@ -503,9 +479,9 @@ if(!sampleResult.getSampleLabel().equals(&quot;Insertar_ejecucion&quot;)){
           <stringProp name="scriptLanguage">java</stringProp>
         </JSR223Listener>
         <hashTree/>
-        <RecordingController guiclass="RecordController" testclass="RecordingController" testname="Recording Controller" enabled="true"/>
+        <RecordingController guiclass="RecordController" testclass="RecordingController" testname="Home__" enabled="true"/>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Transaccion1__" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Peticion1" enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
               <collectionProp name="Arguments.arguments"/>
             </elementProp>
