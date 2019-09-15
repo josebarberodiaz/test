@@ -16,7 +16,7 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="DATABASE_URL" elementType="Argument">
             <stringProp name="Argument.name">DATABASE_URL</stringProp>
-            <stringProp name="Argument.value">${__P(v_database_url,jdbc:mysql://172.30.115.40:3306/grafana?allowPublicKeyRetrieval=true)}</stringProp>
+            <stringProp name="Argument.value">${__P(v_database_url,jdbc:mysql://mysql/grafana?useSSL=false&amp;allowPublicKeyRetrieval=true)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="DATABASE_USR" elementType="Argument">
@@ -66,12 +66,7 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="RUTA_BASE" elementType="Argument">
             <stringProp name="Argument.name">RUTA_BASE</stringProp>
-            <stringProp name="Argument.value">D:\proyectos\bantech\test\</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="#RUTA_BASE" elementType="Argument">
-            <stringProp name="Argument.name">#RUTA_BASE</stringProp>
-            <stringProp name="Argument.value">ruta_base_unix</stringProp>
+            <stringProp name="Argument.value">./test</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="IP" elementType="Argument">
@@ -92,36 +87,6 @@
           <elementProp name="scheme" elementType="Argument">
             <stringProp name="Argument.name">scheme</stringProp>
             <stringProp name="Argument.value">http</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="RAMP_UP_PERIOD" elementType="Argument">
-            <stringProp name="Argument.name">RAMP_UP_PERIOD</stringProp>
-            <stringProp name="Argument.value">60</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="DURATION" elementType="Argument">
-            <stringProp name="Argument.name">DURATION</stringProp>
-            <stringProp name="Argument.value">120</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="NUM_USUARIOS" elementType="Argument">
-            <stringProp name="Argument.name">NUM_USUARIOS</stringProp>
-            <stringProp name="Argument.value">1</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-        </collectionProp>
-      </Arguments>
-      <hashTree/>
-      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Variables_Desarrollo2" enabled="false">
-        <collectionProp name="Arguments.arguments">
-          <elementProp name="host" elementType="Argument">
-            <stringProp name="Argument.name">host</stringProp>
-            <stringProp name="Argument.value">www.example.com</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="scheme" elementType="Argument">
-            <stringProp name="Argument.name">scheme</stringProp>
-            <stringProp name="Argument.value">https</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
@@ -330,15 +295,15 @@ if (!sampleResult.isSuccessful()) {
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">10</stringProp>
+          <intProp name="LoopController.loops">-1</intProp>
         </elementProp>
-        <stringProp name="ThreadGroup.num_threads">1</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <stringProp name="ThreadGroup.num_threads">${NUM_THREADS}</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">${RAMPUP_SECONDS}</stringProp>
         <longProp name="ThreadGroup.start_time">1370726934000</longProp>
         <longProp name="ThreadGroup.end_time">1370726934000</longProp>
-        <boolProp name="ThreadGroup.scheduler">false</boolProp>
-        <stringProp name="ThreadGroup.duration"></stringProp>
-        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.scheduler">true</boolProp>
+        <stringProp name="ThreadGroup.duration">${DURATION_SECONDS}</stringProp>
+        <stringProp name="ThreadGroup.delay">0</stringProp>
       </ThreadGroup>
       <hashTree>
         <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="Insertar_ejecucion" enabled="true">
@@ -518,7 +483,7 @@ if(!sampleResult.getSampleLabel().equals(&quot;Insertar_ejecucion&quot;)){
             </HeaderManager>
             <hashTree/>
             <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
-              <stringProp name="ConstantTimer.delay">500</stringProp>
+              <stringProp name="ConstantTimer.delay">50</stringProp>
             </ConstantTimer>
             <hashTree/>
           </hashTree>
