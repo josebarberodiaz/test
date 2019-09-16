@@ -16,7 +16,7 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="DATABASE_URL" elementType="Argument">
             <stringProp name="Argument.name">DATABASE_URL</stringProp>
-            <stringProp name="Argument.value">${__P(v_database_url,jdbc:mysql://mysql/grafana?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=UTC)}</stringProp>
+            <stringProp name="Argument.value">${__P(v_database_url,jdbc:mysql://mysql/chaos_monkey?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=UTC)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="DATABASE_USR" elementType="Argument">
@@ -131,7 +131,8 @@ import com.mysql.jdbc.Driver;
     	 SimpleDateFormat sdf = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;);
       // create a mysql database connection
       String myDriver = &quot;com.mysql.jdbc.Driver&quot;;
-      String myUrl = &quot;jdbc:mysql://mysql/grafana?useSSL=false&amp;allowPublicKeyRetrieval=true&quot;;
+      String myUrl = vars.get(&quot;DATABASE_URL&quot;);//&quot;jdbc:mysql://mysql/grafana?useSSL=false&amp;allowPublicKeyRetrieval=true&quot;;
+
       Class.forName(myDriver);
 String database_user = vars.get(&quot;DATABASE_USR&quot;);
 	String database_pwd = vars.get(&quot;DATABASE_PWD&quot;);
@@ -336,7 +337,7 @@ try
 	}
 
 
-	log.error(&quot;INSERTANDO EXECUTION ---------------&quot;+idExec);
+	log.info(&quot;INSERTANDO EXECUTION ---------------&quot;+idExec);
 	
 	props.put(&quot;idExec&quot;,idExec);
 
@@ -365,7 +366,7 @@ if(!sampleResult.getSampleLabel().equals(&quot;Insertar_ejecucion&quot;)){
     	
 	log.info(&quot;Inserting in database...&quot;);
      String myDriver = &quot;com.mysql.jdbc.Driver&quot;;
-      String myUrl = &quot;jdbc:mysql://mysql/grafana?useSSL=false&amp;allowPublicKeyRetrieval=true&quot;;
+     String myUrl = vars.get(&quot;DATABASE_URL&quot;);//&quot;jdbc:mysql://mysql/grafana?useSSL=false&amp;allowPublicKeyRetrieval=true&quot;;
 	String database_user = vars.get(&quot;DATABASE_USR&quot;);
 	String database_pwd = vars.get(&quot;DATABASE_PWD&quot;);
 
@@ -384,6 +385,7 @@ if(!sampleResult.getSampleLabel().equals(&quot;Insertar_ejecucion&quot;)){
 	}else{
 		stmt = conn.createStatement();
 		try {Thread.sleep(500);} catch (InterruptedException e) {}
+		log.info(&quot;insert into suite ....&quot;);
 		stmt.executeUpdate(&quot;insert into suite (id_execution,software_delivery, name, start_date) values (&apos;&quot;+idExec+
 		&quot;&apos;,&apos;null&apos;,&apos;&quot;+sampleResult.getSampleLabel()+&quot;&apos;,&apos;&quot;+new java.sql.Timestamp(sampleResult.getTimeStamp())+&quot;&apos;)&quot;, new String[]{&quot;id&quot;});
 		rs = stmt.getGeneratedKeys();
@@ -430,6 +432,7 @@ if(!sampleResult.getSampleLabel().equals(&quot;Insertar_ejecucion&quot;)){
 
 	String success = sampleResult.isSuccessful()?&quot;OK&quot;:&quot;Error&quot;;
 	Statement stmt = conn.createStatement();
+	log.info(&quot;Update suite duration....&quot;);
 	stmt.executeUpdate(&quot;UPDATE suite set duration=&quot;+sampleResult.getTime()+&quot;, status=&apos;&quot;+success+&quot;&apos; where id =&quot;+idSuite);
 	
 	
