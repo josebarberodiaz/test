@@ -131,7 +131,7 @@ import com.mysql.jdbc.Driver;
     	 SimpleDateFormat sdf = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;);
       // create a mysql database connection
       String myDriver = &quot;com.mysql.jdbc.Driver&quot;;
-      String myUrl = vars.get(&quot;DATABASE_URL&quot;);//&quot;jdbc:mysql://mysql/grafana?useSSL=false&amp;allowPublicKeyRetrieval=true&quot;;
+      String myUrl = vars.get(&quot;DATABASE_URL&quot;);
 
       Class.forName(myDriver);
 String database_user = vars.get(&quot;DATABASE_USR&quot;);
@@ -366,7 +366,7 @@ if(!sampleResult.getSampleLabel().equals(&quot;Insertar_ejecucion&quot;)){
     	
 	log.info(&quot;Inserting in database...&quot;);
      String myDriver = &quot;com.mysql.jdbc.Driver&quot;;
-     String myUrl = vars.get(&quot;DATABASE_URL&quot;);//&quot;jdbc:mysql://mysql/grafana?useSSL=false&amp;allowPublicKeyRetrieval=true&quot;;
+     String myUrl = vars.get(&quot;DATABASE_URL&quot;);
 	String database_user = vars.get(&quot;DATABASE_USR&quot;);
 	String database_pwd = vars.get(&quot;DATABASE_PWD&quot;);
 
@@ -447,7 +447,10 @@ if(!sampleResult.getSampleLabel().equals(&quot;Insertar_ejecucion&quot;)){
           <stringProp name="scriptLanguage">java</stringProp>
         </JSR223Listener>
         <hashTree/>
-        <RecordingController guiclass="RecordController" testclass="RecordingController" testname="Home__" enabled="true"/>
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Home__" enabled="true">
+          <boolProp name="TransactionController.includeTimers">false</boolProp>
+          <boolProp name="TransactionController.parent">true</boolProp>
+        </TransactionController>
         <hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Peticion1" enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
