@@ -476,7 +476,7 @@ if(!sampleResult.getSampleLabel().equals(&quot;Insertar_ejecucion&quot;)){
         <hashTree>
           <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="AAA_TC01_HomePage" enabled="true">
             <boolProp name="TransactionController.includeTimers">false</boolProp>
-            <boolProp name="TransactionController.parent">false</boolProp>
+            <boolProp name="TransactionController.parent">true</boolProp>
           </TransactionController>
           <hashTree>
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="AAA_TC01_Transaccion_1__" enabled="true">
@@ -587,7 +587,7 @@ if(!sampleResult.getSampleLabel().equals(&quot;Insertar_ejecucion&quot;)){
         <hashTree>
           <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="BBB_TC01_HomePage" enabled="true">
             <boolProp name="TransactionController.includeTimers">false</boolProp>
-            <boolProp name="TransactionController.parent">false</boolProp>
+            <boolProp name="TransactionController.parent">true</boolProp>
           </TransactionController>
           <hashTree>
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="BBB_TC01_Transaccion_1__" enabled="true">
@@ -698,7 +698,7 @@ if(!sampleResult.getSampleLabel().equals(&quot;Insertar_ejecucion&quot;)){
         <hashTree>
           <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="CCC_TC01_HomePage" enabled="true">
             <boolProp name="TransactionController.includeTimers">false</boolProp>
-            <boolProp name="TransactionController.parent">false</boolProp>
+            <boolProp name="TransactionController.parent">true</boolProp>
           </TransactionController>
           <hashTree>
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="CCC_TC01_Transaccion_1__" enabled="true">
